@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
 
-lfm2b_spotify_uri = 'spotify-uris.tsv'
-lfm2b_genre = 'tags-micro-genres.json'
-music4all_metadata = 'id_metadata.csv'
+lfm2b_spotify_uri = './lfm2b/spotify-uris.tsv'
+lfm2b_genre = './lfm2b/tags-micro-genres.json'
+music4all_metadata = './music4all/id_metadata.csv'
 # load item's genre from lfm2b
 lfm2b_spotify_uri = pd.read_csv(lfm2b_spotify_uri, delimiter='\t', header=0, index_col=0)
 lfm2b_genre = pd.read_json(lfm2b_genre, lines=True)
@@ -22,7 +22,7 @@ new_meta = {'id': [i for i in uri_genre_subset],
             'genre': [lfm2b_genre.loc[i].tags for i in uri_genre_subset],
             'artist': [lfm2b_genre.loc[i].artist for i in uri_genre_subset]}
 new_meta = pd.DataFrame(data=new_meta)
-new_meta.to_csv("meta_lfm2b_uri_subset.csv")
+new_meta.to_csv("./lfm2b/meta_lfm2b_uri_subset.csv")
 
 music4all_metadata = pd.read_csv(music4all_metadata, delimiter='\t', header=0, usecols=[0, 1])
 # get subset between music4all and lfm2b
@@ -52,4 +52,4 @@ for index, row in music4all_metadata.iterrows():
 music4all_metadata['genre'] = genre_list
 music4all_metadata['artist'] = artist_list
 
-music4all_metadata.to_csv("meta_lfm2b_uri_music4all_subset.csv", index=False)
+music4all_metadata.to_csv("./final_data/meta_lfm2b_uri_music4all_subset.csv", index=False)
