@@ -52,4 +52,4 @@ for index, row in music4all_metadata.iterrows():
 music4all_metadata['genre'] = genre_list
 music4all_metadata['artist'] = artist_list
 
-music4all_metadata.to_csv("./final_data/meta_lfm2b_uri_music4all_subset.csv", index=False)
+music4all_metadata.to_csv("./subset/meta_lfm2b_uri_music4all_subset.csv", index=False)
