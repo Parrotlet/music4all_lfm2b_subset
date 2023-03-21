@@ -24,10 +24,12 @@ music4all_ivec256.set_index('id', inplace=True)
 music4all_lyric_tf.set_index('id', inplace=True)
 music4all_ivec256_id = [items.loc[i].iloc[0] for i, r in music4all_ivec256.iterrows()]
 music4all_lyric_tf_id = [items.loc[i].iloc[0] for i, r in music4all_lyric_tf.iterrows()]
-music4all_ivec256['id'] = music4all_ivec256_id
-music4all_lyric_tf['id'] = music4all_lyric_tf_id
+music4all_ivec256['new_id'] = music4all_ivec256_id
+music4all_lyric_tf['new_id'] = music4all_lyric_tf_id
 music4all_ivec256 = last_column_to_first(music4all_ivec256)
 music4all_lyric_tf = last_column_to_first(music4all_lyric_tf)
+music4all_ivec256.sort_values(by='new_id', ascending=True, inplace=True)
+music4all_lyric_tf.sort_values(by='new_id', ascending=True, inplace=True)
 
 music4all_ivec256.to_csv("./final_data/items_ids_ivec256_filter.csv", index=False)
 music4all_lyric_tf.to_csv("./final_data/items_ids_lyric_tf_filter.csv", index=False)
