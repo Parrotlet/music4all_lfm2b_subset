@@ -70,6 +70,7 @@ items['genre'] = genre
 # print('Unique artist number:', len(pd.unique(items['artist'])))
 # print('Unique genre number:', len(pd.unique(items['genre'])))
 #
+items.drop(columns=['danceability', 'energy', 'valence', 'tempo', 'key', 'mode'], inplace=True)
 items.to_csv("./final_data/items_ids_meta.csv", index=False)
 
 

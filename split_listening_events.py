@@ -20,11 +20,13 @@ custom_date_parser = lambda x: datetime.strptime(x, "%Y-%m-%d %H:%M:%S")
 '''
 get the id set
 '''
-essentia = music4all_feature = pd.read_csv("./music4all_onion/id_essentia.tsv", delimiter='\t', header=0)
-id_set_essentia= pd.unique(essentia["id"])
+essentia = pd.read_csv("./music4all_onion/id_essentia.tsv", delimiter='\t', header=0)
+id_set_essentia = pd.unique(essentia["id"])
+del essentia
 blf_correlation = pd.read_csv("./music4all_onion/id_blf_correlation.tsv", delimiter='\t', header=0)
 id_set_blf = pd.unique(blf_correlation["id"])
-np.intersect1d(id_set_essentia, id_set_blf)
+del blf_correlation
+id_set = np.intersect1d(id_set_essentia, id_set_blf)
 '''
 filter data by date and micro genres tags
 '''
