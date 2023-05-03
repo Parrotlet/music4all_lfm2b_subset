@@ -63,9 +63,9 @@ def pd_to_pca(df, pca_dim, feature_name):
 music4all_essentia = filter_feature(items_path=items_path, feature_path=music4all_essentia_path,
                                     feature_name="essentia",use_pca=False)
 #273,147
-rhythm_cols = music4all_essentia.filter(regex='rhythm')
+rhythm_cols = music4all_essentia.filter(regex='rhythm|new_id')
 pd_to_pca(rhythm_cols, 256, 'rhythm')
-tonal_cols = music4all_essentia.filter(regex='tonal')
+tonal_cols = music4all_essentia.filter(regex='tonal|new_id')
 pd_to_pca(tonal_cols, 128, 'tonal')
 #500,500,200
 music4all_chroma = filter_feature(items_path=items_path, feature_path=music4all_chroma_path,
