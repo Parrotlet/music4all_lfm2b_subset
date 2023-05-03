@@ -17,7 +17,14 @@ custom_date_parser = lambda x: datetime.strptime(x, "%Y-%m-%d %H:%M:%S")
 # print('meta_lfm2b_uri_music4all_subset id number : ', len(a))
 # print('events uri number : ', len(b))
 # print('subset number : ', len(c))
-
+'''
+get the id set
+'''
+essentia = music4all_feature = pd.read_csv("./music4all_onion/id_essentia.tsv", delimiter='\t', header=0)
+id_set_essentia= pd.unique(essentia["id"])
+blf_correlation = pd.read_csv("./music4all_onion/id_blf_correlation.tsv", delimiter='\t', header=0)
+id_set_blf = pd.unique(blf_correlation["id"])
+np.intersect1d(id_set_essentia, id_set_blf)
 '''
 filter data by date and micro genres tags
 '''
@@ -38,7 +45,7 @@ listening_events = pd.read_csv(listening_events_path, sep='\t', header=0, parse_
 
 for i,chunk in enumerate(listening_events):
     # chunk = chunk.loc[(chunk['timestamp'] >= start_date) & (chunk['timestamp'] <= end_date) & chunk['track_id'].isin(c)]
-    chunk = chunk.loc[(chunk['timestamp'] >= start_date) & (chunk['timestamp'] <= end_date)]
-    chunk.to_csv("./music4all_onion/listening_events_music4all_lfm2b_2023_filter.tsv",
+    chunk = chunk.loc[(chunk['timestamp'] >= start_date) & (chunk['timestamp'] <= end_date) & chunk['user_id'].isin(id_set)]
+    chunk.to_csv("./music4all_onion/listening_events_music4all_lfm2b_2023_filter2.tsv",
                  sep='\t', header=header, mode='a', index=False)
     header = False
