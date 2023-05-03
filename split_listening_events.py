@@ -34,7 +34,8 @@ start_date = datetime.strptime('2020-01-01 00:00:00', "%Y-%m-%d %H:%M:%S")
 end_date = datetime.strptime('2020-03-19 23:59:59', "%Y-%m-%d %H:%M:%S")
 
 # read data
-listening_events_path = "./music4all_onion/userid_trackid_timestamp.tsv"
+# listening_events_path = "./music4all_onion/userid_trackid_timestamp.tsv"
+listening_events_path = "./music4all_onion/listening_events_music4all_lfm2b_2023_filter.tsv"
 
 
 # users = pd.read_csv(users_path, sep='\t')
@@ -47,7 +48,7 @@ listening_events = pd.read_csv(listening_events_path, sep='\t', header=0, parse_
 
 for i,chunk in enumerate(listening_events):
     # chunk = chunk.loc[(chunk['timestamp'] >= start_date) & (chunk['timestamp'] <= end_date) & chunk['track_id'].isin(c)]
-    chunk = chunk.loc[(chunk['timestamp'] >= start_date) & (chunk['timestamp'] <= end_date) & chunk['user_id'].isin(id_set)]
+    chunk = chunk.loc[(chunk['timestamp'] >= start_date) & (chunk['timestamp'] <= end_date) & chunk['track_id'].isin(id_set)]
     chunk.to_csv("./music4all_onion/listening_events_music4all_lfm2b_2023_filter2.tsv",
                  sep='\t', header=header, mode='a', index=False)
     header = False
