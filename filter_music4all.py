@@ -60,21 +60,21 @@ def pd_to_pca(df, pca_dim, feature_name):
     df_pca.to_csv("./final_data/items_ids_" + feature_name + "_pca" + str(pca_dim) + ".csv", index=False)
 
 
-# # music4all_lyric=filter_feature(items_path=items_path,feature_path=music4all_lyric_tf_path,feature_name="lyrics_tf-idf")
-# music4all_essentia = filter_feature(items_path=items_path, feature_path=music4all_essentia_path,
-#                                     feature_name="essentia",use_pca=False)
-# #273,147
-# rhythm_cols = music4all_essentia.filter(regex='rhythm|new_id')
-# pd_to_pca(rhythm_cols, 256, 'rhythm')
-# tonal_cols = music4all_essentia.filter(regex='tonal|new_id')
-# pd_to_pca(tonal_cols, 128, 'tonal')
-# #500,500,200
-# music4all_chroma = filter_feature(items_path=items_path, feature_path=music4all_chroma_path,
-#                                     feature_name="chroma",use_pca=True,pca_dim=256)
-# music4all_emobase = filter_feature(items_path=items_path, feature_path=music4all_emobase_path,
-#                                     feature_name="emobase",use_pca=True,pca_dim=256)
-# music4all_ivec512 = filter_feature(items_path=items_path, feature_path=music4all_ivec512_path,
-#                                     feature_name="ivec512",use_pca=True,pca_dim=128)
+# music4all_lyric=filter_feature(items_path=items_path,feature_path=music4all_lyric_tf_path,feature_name="lyrics_tf-idf")
+music4all_essentia = filter_feature(items_path=items_path, feature_path=music4all_essentia_path,
+                                    feature_name="essentia",use_pca=False)
+#273,147
+rhythm_cols = music4all_essentia.filter(regex='rhythm|new_id')
+pd_to_pca(rhythm_cols, 256, 'rhythm')
+tonal_cols = music4all_essentia.filter(regex='tonal|new_id')
+pd_to_pca(tonal_cols, 128, 'tonal')
+#500,500,200
+music4all_chroma = filter_feature(items_path=items_path, feature_path=music4all_chroma_path,
+                                    feature_name="chroma",use_pca=True,pca_dim=256)
+music4all_emobase = filter_feature(items_path=items_path, feature_path=music4all_emobase_path,
+                                    feature_name="emobase",use_pca=True,pca_dim=256)
+music4all_ivec512 = filter_feature(items_path=items_path, feature_path=music4all_ivec512_path,
+                                    feature_name="ivec512",use_pca=True,pca_dim=128)
 # music4all_blf_logfluc = filter_feature(items_path=items_path, feature_path=music4all_blf_logfluc_path,
 #                                     feature_name="blf_logfluc",use_pca=True,pca_dim=256)
 # music4all_blf_correlation = filter_feature(items_path=items_path, feature_path=music4all_blf_correlation_path,

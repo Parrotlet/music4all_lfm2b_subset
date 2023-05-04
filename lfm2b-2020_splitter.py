@@ -23,7 +23,7 @@ k = 1
 
 user_info_path = './lfm2b/users.tsv'
 item_info_path = './lfm2b/tracks.tsv'
-listening_events_path = os.path.join(listening_history_path, 'listening_events_music4all_lfm2b_2023_filter.tsv')
+listening_events_path = os.path.join(listening_history_path, 'listening_events_music4all_lfm2b_2023_filter2.tsv')
 
 lhs = pd.read_csv(listening_events_path, sep='\t', names=['old_user_id', 'old_item_id', 'timestamp'], skiprows=1,)
 print(INF_STR.format(len(lhs), lhs.old_user_id.nunique(), lhs.old_item_id.nunique(), 'Original Data'))
