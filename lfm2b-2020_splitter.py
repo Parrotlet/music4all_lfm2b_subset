@@ -11,9 +11,9 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('--listening_history_path', '-lh', type=str,
                     help="Path to 'users.tsv' and 'listening_events.tsv' of the LFM2b-2020 dataset.",
-                    default='./music4all_onion/')
+                    default='./lfm2b/')
 parser.add_argument('--saving_path', '-s', type=str, help="Path where to save the split data. Default to './'",
-                    default='./final_data/')
+                    default='./final_data_lfm2b/')
 
 args = parser.parse_args()
 
@@ -23,13 +23,13 @@ k = 1
 
 user_info_path = './lfm2b/users.tsv'
 item_info_path = './lfm2b/tracks.tsv'
-listening_events_path = os.path.join(listening_history_path, 'listening_events_music4all_lfm2b_2023_filter2.tsv')
+listening_events_path = os.path.join(listening_history_path, 'listening_events_lfm2b_2020.tsv')
 
 lhs = pd.read_csv(listening_events_path, sep='\t', names=['old_user_id', 'old_item_id', 'timestamp'], skiprows=1,)
 print(INF_STR.format(len(lhs), lhs.old_user_id.nunique(), lhs.old_item_id.nunique(), 'Original Data'))
 
 # We keep only the data from the last month
-lhs = lhs[lhs.timestamp >= '2020-01-01 00:00:00']
+lhs = lhs[lhs.timestamp >= '2020-02-01 00:00:00']
 print(INF_STR.format(len(lhs), lhs.old_user_id.nunique(), lhs.old_item_id.nunique(), 'Only last month'))
 
 # Loading users and items

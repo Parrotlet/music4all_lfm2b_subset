@@ -32,38 +32,43 @@ users.to_csv("./final_data/user_ids_meta.csv", index=False)
 
 # add item meta data to items
 
-music4all_meta = pd.read_csv(music4all_meta_path, header=0, usecols=[0, 4, 5, 6, 7, 8, 9], index_col=0, delimiter='\t')
+music4all_meta = pd.read_csv(music4all_meta_path, header=0, usecols=[0, 3, 4, 5, 6, 7, 8, 9], index_col=0, delimiter='\t')
 music4all_meta.rename(columns={'mode': 'mode_'}, inplace=True)
-music4all_info = pd.read_csv(music4all_info_path, header=0, usecols=[0, 1], index_col=0, delimiter='\t')
+music4all_info = pd.read_csv(music4all_info_path, header=0, usecols=[0, 1, 2], index_col=0, delimiter='\t')
 music4all_genres = pd.read_csv(music4all_genres_path, delimiter='\t', header=0, index_col=0)
 music4all_genres['genre'] = music4all_genres.idxmax(axis=1)
 music4all_genres = music4all_genres['genre']
-# popularity = []
+release = []
 danceability = []
 energy = []
 key = []
 mode = []
 valence = []
 tempo = []
+song = []
 artist = []
 genre = []
 for i in items['old_item_id']:
     # popularity.append(music4all_meta.loc[i].popularity / 100)
+    release.append(int(music4all_meta.loc[i].release))
     danceability.append(music4all_meta.loc[i].danceability)
     energy.append(music4all_meta.loc[i].energy)
     key.append(music4all_meta.loc[i].key)
     mode.append(music4all_meta.loc[i].mode_)
     valence.append(music4all_meta.loc[i].valence)
     tempo.append(music4all_meta.loc[i].tempo / (music4all_meta['tempo'].max()))
+    song.append(music4all_info.loc[i].song)
     artist.append(music4all_info.loc[i].artist)
     genre.append(music4all_genres.loc[i])
 # items['popularity'] = popularity
+items['release'] = release
 items['danceability'] = danceability
 items['energy'] = energy
 items['valence'] = valence
 items['tempo'] = tempo
 items['key'] = key
 items['mode'] = mode
+items['song'] = song
 items['artist'] = artist
 items['genre'] = genre
 #
@@ -71,6 +76,6 @@ items['genre'] = genre
 # print('Unique genre number:', len(pd.unique(items['genre'])))
 #
 items.drop(columns=['danceability', 'energy', 'valence', 'tempo', 'key', 'mode'], inplace=True)
-items.to_csv("./final_data/items_ids_meta.csv", index=False)
+items.to_csv("./final_data/items_ids_meta2.csv", index=False)
 
 
